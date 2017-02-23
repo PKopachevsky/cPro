@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <string.h>
@@ -22,5 +23,21 @@ int main (void)
   serv_addr.sin_port = htons(5000);
 
   bind(listenfd, (struct sockaddr*)&serv_addr,sizeof(serv_addr));
+
+  if(listen(listenfd, 10) == -1){
+    printf("Failed to listen\n");
+    return -1;
+  }
+  
+  while(1)
+    {
+      connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
+
+      strcpy(sendBuff, "Message from server");
+      write(connfd, sendBuff, strlen(sendBuff));
+
+      close(connfd);
+      sleep(1);
+    }
   return 0;
 }
