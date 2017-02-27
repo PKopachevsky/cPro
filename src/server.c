@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <errno.h>
 
 int main (void)
 {
@@ -13,7 +15,9 @@ int main (void)
   char sendBuff[1025];
 
   int listenfd = 0, connfd = 0;
+  listenfd = socket(AF_INET, SOCK_STREAM, 0);
   printf("socket retrieve success\n");
+  printf("socket descriptor: %d\n", listenfd);
 
   memset(&serv_addr, '0', sizeof(serv_addr));
   memset(sendBuff, '0', sizeof(sendBuff));
@@ -24,8 +28,8 @@ int main (void)
 
   bind(listenfd, (struct sockaddr*)&serv_addr,sizeof(serv_addr));
 
-  if(listen(listenfd, 10) == -1){
-    printf("Failed to listen\n");
+  if( listen(listenfd, 10) == -1){
+    printf("Failed to listen. Errno: %d\n", errno);
     return -1;
   }
   
@@ -33,7 +37,8 @@ int main (void)
     {
       connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
 
-      strcpy(sendBuff, "Message from server");
+      strcpy(sendBuff, "Fuck you, from server");
+      printf("\n sendBuff len: %ld \n", strlen(sendBuff));
       write(connfd, sendBuff, strlen(sendBuff));
 
       close(connfd);
