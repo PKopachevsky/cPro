@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <counter.h>
 
 #define STEP 250
 
@@ -9,14 +10,7 @@ void main(){
     for(i = 0; i < n; ++i){
         countArr[i] = 0;
     }
-    while((c = getchar()) != EOF){
-        if (c >= 'A' && c <= 'Z'){
-            ++countArr[c - 'A'];
-        }
-        if (c >= 'a' && c <= 'z'){
-            ++countArr[c - 'a'];
-        }
-    }
+    count(countArr);
     for(i = 0; i < n; ++i){
         putchar('A' + i);
         c = countArr[i];
