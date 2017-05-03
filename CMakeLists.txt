@@ -3,5 +3,7 @@ project(cPro)
 
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES main.c)
-add_executable(calc ${SOURCE_FILES})
+include_directories("lookup/")
+include_directories("parser/")
+add_subdirectory(lookup)
+add_subdirectory(parser)

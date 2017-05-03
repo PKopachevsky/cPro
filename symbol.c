@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <counter.h>
+#include "counter.h"
 
 #define STEP 250
 
