@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "parser.h"
+#include "tree.h"
 
 void main() {
     FILE *fp = fopen("./test.txt", "r");
@@ -10,10 +11,10 @@ void main() {
         printf("File not found !!");
         return;
     }
+    struct WordNode *node = toList(fp);
+    struct TreeNode *treeRoot = toTree(node);
+    int counter = 0;
+    tprint(treeRoot, &counter);
 
-    struct WordNode *node = parse(fp);
-    while (node != NULL) {
-        printf("%s ", node->word);
-        node = node->next;
-    }
+    printf("Total count: %d", counter);
 }
