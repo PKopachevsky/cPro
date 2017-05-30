@@ -3,6 +3,6 @@ project(cp)
 
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES main.c ../files/fopen.c)
+set(SOURCE_FILES main.c fsize.c fsize.h)
 
-add_executable(cp ${SOURCE_FILES})
+add_executable(ls ${SOURCE_FILES})
