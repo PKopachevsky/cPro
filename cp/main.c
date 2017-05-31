@@ -7,7 +7,7 @@ void main(int argc, char *argv[]) {
     FILE *fileopen(char *, char *);
     void filecopy(FILE *, FILE *);
 
-        if (argc >= 2) {
+    if (argc >= 2) {
         srcFile = fileopen(*++argv, "r");
     }
     if (argc >= 3) {

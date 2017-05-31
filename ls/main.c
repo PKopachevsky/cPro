@@ -9,5 +9,5 @@ void main(int argc, char **argv) {
         name = ".";
     }
     long byteSize = fsize(name);
-    printf("%8.2f MB  %s\n", (double) (byteSize / (1024 * 1024)), name);
+    printf("%.2f MB  %s\n", (double) (byteSize / (1024 * 1024)), name);
 }
