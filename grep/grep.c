@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     }
 
     char *patter = *++argv;
-    char p_len = strlen(patter);
+    long p_len = strlen(patter);
 
     if (argc > 2) {
         src = fileopen(*++argv, "r");
